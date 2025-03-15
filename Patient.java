@@ -10,7 +10,7 @@ package bloodtestscheduler;
  */
 public class Patient {
     private String name;
-    private String priority;
+    private String priority; // High, Medium, Low
     private String gpDetails;
     private int age;
     private boolean fromHospitalWard;
