@@ -9,18 +9,28 @@ package bloodtestscheduler;
  * @author joshu
  */
 public class Patient {
+    private String id;
     private String name;
     private String priority; // High, Medium, Low
     private String gpDetails;
     private int age;
     private boolean fromHospitalWard;
 
-    public Patient(String name, String priority, String gpDetails, int age, boolean fromHospitalWard) {
+    public Patient(String id, String name, String priority, String gpDetails, int age, boolean fromHospitalWard) {
+        this.id = id;
         this.name = name;
         this.priority = priority;
         this.gpDetails = gpDetails;
         this.age = age;
         this.fromHospitalWard = fromHospitalWard;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -62,10 +72,11 @@ public class Patient {
     public void setFromHospitalWard(boolean fromHospitalWard) {
         this.fromHospitalWard = fromHospitalWard;
     }
-
+    
+    
     @Override
     public String toString() {
-        return "Patient: " + "\nName:" + name + "\nPriority: " + priority + "\ngpDetails: " + gpDetails + "\nAge: " + age + "fromHospitalWard: " + (fromHospitalWard ? "Yes" : "No") + ")";
+        return "Patient: " + "\nID: " + id + "\nName:" + name + "\nPriority: " + priority + "\ngpDetails: " + gpDetails + "\nAge: " + age + "fromHospitalWard: " + (fromHospitalWard ? "Yes" : "No") + ")";
     }
     
 }
