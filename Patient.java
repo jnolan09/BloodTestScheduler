@@ -4,11 +4,13 @@
  */
 package bloodtestscheduler;
 
+import java.io.Serializable;
+
 /**
  *
  * @author joshu
  */
-public class Patient {
+public class Patient implements Serializable {
     private String id;
     private String name;
     private String priority; // Ugrent, Medium, Low
