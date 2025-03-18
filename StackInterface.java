@@ -14,6 +14,7 @@ public interface StackInterface<A> {
     A pop(); // Removes the element at the top of the stack
     A peek(); // Shows the element at the top of the stack
     boolean isEmpty(); // Checks if stack is empty
+    boolean isFull(); // Cjecks if stack is full
     int size(); // The number of elements in the stack
     void clear(); // Removes all elements from the stack
     
