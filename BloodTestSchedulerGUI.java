@@ -4,17 +4,32 @@
  */
 package bloodtestscheduler;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author joshu
  */
 public class BloodTestSchedulerGUI extends javax.swing.JFrame {
+    
+    private LinkedQueue<Patient> regularQueue;
+    private PatientPriorityQueue priorityQueue;
+    private NoShowTracker noShowTracker;
+    private ArrayList<Patient> processedPatients;
 
     /**
      * Creates new form BloodTestSchedulerGUI
      */
     public BloodTestSchedulerGUI() {
         initComponents();
+        // Initialize data structures
+        regularQueue = new LinkedQueue<>();
+        priorityQueue = new PatientPriorityQueue();
+        noShowTracker = new NoShowTracker();
+        processedPatients = new ArrayList<>();
+        
+        
     }
 
     /**
@@ -32,7 +47,6 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         addBTN = new javax.swing.JButton();
-        nameTF = new javax.swing.JTextField();
         prioTF = new javax.swing.JTextField();
         idTF = new javax.swing.JTextField();
         ageTF = new javax.swing.JTextField();
@@ -53,6 +67,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         processBTN = new javax.swing.JButton();
         didntBTN = new javax.swing.JButton();
         viewBTN = new javax.swing.JButton();
+        nameTF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
@@ -70,10 +85,9 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         jLabel5.setText("Age: ");
 
         addBTN.setText("ADD");
-
-        nameTF.addActionListener(new java.awt.event.ActionListener() {
+        addBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTFActionPerformed(evt);
+                addBTNActionPerformed(evt);
             }
         });
 
@@ -132,9 +146,9 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                                 .addComponent(idTF, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(11, 11, 11)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ageTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,13 +180,13 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(didntTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGap(0, 42, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(didntBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(54, 54, 54)
                                         .addComponent(viewBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(21, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,9 +201,9 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(addBTN)
                     .addComponent(ageTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prioTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(prioTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -198,7 +212,7 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addComponent(regTA, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(processBTN)
                     .addComponent(didntBTN)
@@ -224,11 +238,22 @@ public class BloodTestSchedulerGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameTFActionPerformed
+    private void addBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTNActionPerformed
+    // Get input values
+    String id = idTF.getText().trim();
+    String name = nameTF.getText().trim();
+    String priority = prioTF.getText().trim();
+    String ageText = ageTF.getText().trim();
+    String gpDetails = "GP Details";
+    
+    // Validate input
+    if (id.isEmpty() || name.isEmpty() || priority.isEmpty() || ageText.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "All fields are required", "Input Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    }//GEN-LAST:event_addBTNActionPerformed
 
-    /**
+    /** 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
