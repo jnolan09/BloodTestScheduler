@@ -18,3 +18,4 @@ public interface PriorityQueueInterface<A> {
     void clear(); // Clears the queue
              
 }
+                                                        
