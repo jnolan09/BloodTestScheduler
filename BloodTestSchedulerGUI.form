@@ -62,9 +62,9 @@
                               <Component id="idTF" min="-2" pref="64" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="nameTF" min="-2" pref="70" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="nameTF" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="ageTF" min="-2" max="-2" attributes="0"/>
@@ -99,7 +99,7 @@
                                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="didntTF" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -110,7 +110,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="21" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -129,9 +129,9 @@
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="addBTN" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ageTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="nameTF" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="idTF" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="prioTF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nameTF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -143,7 +143,7 @@
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Component id="regTA" min="-2" pref="181" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace pref="62" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="processBTN" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="didntBTN" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -199,10 +199,8 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="ADD"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="nameTF">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameTFActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addBTNActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="prioTF">
@@ -289,6 +287,8 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="View Processed"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="nameTF">
     </Component>
   </SubComponents>
 </Form>
