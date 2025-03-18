@@ -11,7 +11,7 @@ package bloodtestscheduler;
 public class Patient {
     private String id;
     private String name;
-    private String priority; // High, Medium, Low
+    private String priority; // Ugrent, Medium, Low
     private String gpDetails;
     private int age;
     private boolean fromHospitalWard;
@@ -76,7 +76,7 @@ public class Patient {
     
     @Override
     public String toString() {
-        return "Patient: " + "\nID: " + id + "\nName:" + name + "\nPriority: " + priority + "\ngpDetails: " + gpDetails + "\nAge: " + age + "fromHospitalWard: " + (fromHospitalWard ? "Yes" : "No") + ")";
+        return "Patient: " + "\nID: " + id + "\nName:" + name + "\nPriority: " + priority + "\ngpDetails: " + gpDetails + "\nAge: " + age + "From Hospital Ward: " + (fromHospitalWard ? "Yes" : "No") + ")";
     }
     
 }
